@@ -15,34 +15,45 @@ local general_keybindings = function (bufnr)
     map(bufnr, 'n', '<leader>dl', '<cmd>Telescope diagnostics<CR>', options)
 end
 
-require'lspconfig'.intelephense.setup{
-    capabilities = capabilities,
-    on_attach = function()
-        general_keybindings(bufnr)
-        
-        set.tabstop = 4
-        set.softtabstop = 4
-        set.shiftwidth = 4
-    end,
-}
+local lsp_installer = require("nvim-lsp-installer")
 
-require'lspconfig'.tsserver.setup{
-    capabilities = capabilities,
-    on_attach = function(client, bufnr)
-        client.resolved_capabilities.document_formatting = false
-        client.resolved_capabilities.document_range_formatting = false
+-- Register a handler that will be called for each installed server when it's ready (i.e. when installation is finished
+-- or if the server is already installed).
+lsp_installer.on_server_ready(function(server)
+    local opts = {}
 
-        general_keybindings(bufnr)
+    -- (optional) Customize the options passed to the server
+    if server.name == "intelephense" then
+        opts.on_attach = function(client, bufnr)
+            general_keybindings(bufnr)
 
-        set.tabstop = 2
-        set.softtabstop = 2
-        set.shiftwidth = 2
+            set.tabstop = 4
+            set.softtabstop = 4
+            set.shiftwidth = 4
+        end
+    end
 
-        local ts_utils = require("nvim-lsp-ts-utils")
-        ts_utils.setup({})
-        ts_utils.setup_client(client)
-    end,
-}
+    if server.name == "tsserver" then
+        opts.on_attach = function(client, bufnr)
+            client.resolved_capabilities.document_formatting = false
+            client.resolved_capabilities.document_range_formatting = false
+
+            general_keybindings(bufnr)
+
+            set.tabstop = 2
+            set.softtabstop = 2
+            set.shiftwidth = 2
+
+            local ts_utils = require("nvim-lsp-ts-utils")
+            ts_utils.setup({})
+            ts_utils.setup_client(client)
+        end
+    end
+    -- This setup() function will take the provided server configuration and decorate it with the necessary properties
+    -- before passing it onwards to lspconfig.
+    -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+    server:setup(opts)
+end)
 
 local null_ls = require("null-ls")
 null_ls.setup({
