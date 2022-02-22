@@ -49,6 +49,16 @@ lsp_installer.on_server_ready(function(server)
             ts_utils.setup_client(client)
         end
     end
+
+    if server.name == "rust_analyzer" then
+        opts.on_attach = function(client, bufnr)
+            general_keybindings(bufnr)
+
+            set.tabstop = 4
+            set.softtabstop = 4
+            set.shiftwidth = 4
+        end
+    end
     -- This setup() function will take the provided server configuration and decorate it with the necessary properties
     -- before passing it onwards to lspconfig.
     -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
