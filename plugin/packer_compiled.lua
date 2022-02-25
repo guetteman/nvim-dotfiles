@@ -99,6 +99,11 @@ _G.packer_plugins = {
     path = "/Users/guetteluis/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
+  ["dashboard-nvim"] = {
+    loaded = true,
+    path = "/Users/guetteluis/.local/share/nvim/site/pack/packer/start/dashboard-nvim",
+    url = "https://github.com/glepnir/dashboard-nvim"
+  },
   ["editorconfig-vim"] = {
     loaded = true,
     path = "/Users/guetteluis/.local/share/nvim/site/pack/packer/start/editorconfig-vim",
@@ -169,11 +174,6 @@ _G.packer_plugins = {
     path = "/Users/guetteluis/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
-  ["toggleterm.nvim"] = {
-    loaded = true,
-    path = "/Users/guetteluis/.local/share/nvim/site/pack/packer/start/toggleterm.nvim",
-    url = "https://github.com/akinsho/toggleterm.nvim"
-  },
   ultisnips = {
     loaded = true,
     path = "/Users/guetteluis/.local/share/nvim/site/pack/packer/start/ultisnips",
@@ -203,6 +203,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/guetteluis/.local/share/nvim/site/pack/packer/start/vim-test",
     url = "https://github.com/vim-test/vim-test"
+  },
+  ["vim-tmux-navigator"] = {
+    loaded = true,
+    path = "/Users/guetteluis/.local/share/nvim/site/pack/packer/start/vim-tmux-navigator",
+    url = "https://github.com/christoomey/vim-tmux-navigator"
   }
 }
 

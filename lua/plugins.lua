@@ -56,7 +56,9 @@ return require('packer').startup(function ()
 
     use 'SirVer/ultisnips'
 
-    use {'akinsho/toggleterm.nvim'}
+    use 'glepnir/dashboard-nvim'
+
+    use 'christoomey/vim-tmux-navigator'
 
     use {
         'nvim-lualine/lualine.nvim',

@@ -32,7 +32,7 @@ lua require('config.php-cs-fixer')
 
 lua require('config.ultisnips')
 
-lua require('config.toggleterm')
+lua require('config.dashboard-nvim')
 
 "---------------------------------------------------------
 " Keybindings
