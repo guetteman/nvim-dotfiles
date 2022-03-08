@@ -9,6 +9,7 @@ local general_keybindings = function (bufnr)
     map(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', options)
     map(bufnr, 'n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<CR>', options)
     map(bufnr, 'n', '<leader>.', '<cmd>lua vim.lsp.buf.code_action()<CR>', options)
+    map(bufnr, 'n', '<leader>,', '<cmd>lua vim.lsp.buf.formatting()<CR>', options)
 
     map(bufnr, 'n', '<leader>dj', '<cmd>lua vim.diagnostic.goto_next()<CR>', options)
     map(bufnr, 'n', '<leader>dk', '<cmd>lua vim.diagnostic.goto_prev()<CR>', options)
@@ -43,11 +44,34 @@ lsp_installer.on_server_ready(function(server)
             set.tabstop = 2
             set.softtabstop = 2
             set.shiftwidth = 2
+            set.smartindent = false
+            set.cindent = true
 
             local ts_utils = require("nvim-lsp-ts-utils")
             ts_utils.setup({})
             ts_utils.setup_client(client)
         end
+    end
+
+    if server.name == "eslint" then
+        opts.on_attach = function (client, bufnr)
+            -- neovim's LSP client does not currently support dynamic capabilities registration, so we need to set
+            -- the resolved capabilities of the eslint server ourselves!
+            client.resolved_capabilities.document_formatting = true
+            client.resolved_capabilities.document_range_formatting = false
+
+            general_keybindings(bufnr)
+
+            set.tabstop = 2
+            set.softtabstop = 2
+            set.shiftwidth = 2
+            set.smartindent = false
+            set.cindent = true
+        end
+
+        opts.settings = {
+            format = { enable = true }, -- this will enable formatting
+        }
     end
 
     if server.name == "rust_analyzer" then
@@ -57,6 +81,8 @@ lsp_installer.on_server_ready(function(server)
             set.tabstop = 4
             set.softtabstop = 4
             set.shiftwidth = 4
+            set.smartindent = false
+            set.cindent = true
         end
     end
     -- This setup() function will take the provided server configuration and decorate it with the necessary properties
@@ -68,8 +94,7 @@ end)
 local null_ls = require("null-ls")
 null_ls.setup({
     sources = {
-        null_ls.builtins.diagnostics.eslint,
-        null_ls.builtins.code_actions.eslint,
+        -- null_ls.builtins.code_actions.eslint,
         null_ls.builtins.formatting.prettier
     },
     on_attach = function(client, bufnr)

@@ -109,6 +109,12 @@ _G.packer_plugins = {
     path = "/Users/guetteluis/.local/share/nvim/site/pack/packer/start/editorconfig-vim",
     url = "https://github.com/editorconfig/editorconfig-vim"
   },
+  ["focus.nvim"] = {
+    config = { "\27LJ\2\n”\1\0\0\4\0\b\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\0025\3\6\0=\3\a\2B\0\2\1K\0\1\0\25compatible_filetrees\1\2\0\0\rnvimtree\23excluded_filetypes\1\0\0\1\3\0\0\fharpoon\rnvimtree\nsetup\nfocus\frequire\0" },
+    loaded = true,
+    path = "/Users/guetteluis/.local/share/nvim/site/pack/packer/start/focus.nvim",
+    url = "https://github.com/beauwilliams/focus.nvim"
+  },
   harpoon = {
     loaded = true,
     path = "/Users/guetteluis/.local/share/nvim/site/pack/packer/start/harpoon",
@@ -174,11 +180,6 @@ _G.packer_plugins = {
     path = "/Users/guetteluis/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
-  ultisnips = {
-    loaded = true,
-    path = "/Users/guetteluis/.local/share/nvim/site/pack/packer/start/ultisnips",
-    url = "https://github.com/SirVer/ultisnips"
-  },
   ["vim-closetag"] = {
     loaded = true,
     path = "/Users/guetteluis/.local/share/nvim/site/pack/packer/start/vim-closetag",
@@ -212,10 +213,15 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: focus.nvim
+time([[Config for focus.nvim]], true)
+try_loadstring("\27LJ\2\n”\1\0\0\4\0\b\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\0025\3\6\0=\3\a\2B\0\2\1K\0\1\0\25compatible_filetrees\1\2\0\0\rnvimtree\23excluded_filetypes\1\0\0\1\3\0\0\fharpoon\rnvimtree\nsetup\nfocus\frequire\0", "config", "focus.nvim")
+time([[Config for focus.nvim]], false)
 if should_profile then save_profiles() end
 
 end)
 
 if not no_errors then
+  error_msg = error_msg:gsub('"', '\\"')
   vim.api.nvim_command('echohl ErrorMsg | echom "Error in packer_compiled: '..error_msg..'" | echom "Please check your config for correctness" | echohl None')
 end

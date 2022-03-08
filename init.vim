@@ -30,8 +30,6 @@ lua require('config.vim-test')
 
 lua require('config.php-cs-fixer')
 
-lua require('config.ultisnips')
-
 lua require('config.dashboard-nvim')
 
 "---------------------------------------------------------

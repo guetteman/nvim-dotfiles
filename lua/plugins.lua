@@ -54,11 +54,14 @@ return require('packer').startup(function ()
 
     use 'stephpy/vim-php-cs-fixer'
 
-    use 'SirVer/ultisnips'
-
     use 'glepnir/dashboard-nvim'
 
     use 'christoomey/vim-tmux-navigator'
+
+    use { "beauwilliams/focus.nvim", config = function() require("focus").setup({
+        excluded_filetypes = {"harpoon", "nvimtree"},
+        compatible_filetrees = {"nvimtree"}
+    }) end }
 
     use {
         'nvim-lualine/lualine.nvim',
