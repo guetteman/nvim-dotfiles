@@ -9,7 +9,6 @@ local general_keybindings = function (bufnr)
     map(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', options)
     map(bufnr, 'n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<CR>', options)
     map(bufnr, 'n', '<leader>.', '<cmd>lua vim.lsp.buf.code_action()<CR>', options)
-    map(bufnr, 'n', '<leader>,', '<cmd>lua vim.lsp.buf.formatting()<CR>', options)
 
     map(bufnr, 'n', '<leader>dj', '<cmd>lua vim.diagnostic.goto_next()<CR>', options)
     map(bufnr, 'n', '<leader>dk', '<cmd>lua vim.diagnostic.goto_prev()<CR>', options)
@@ -57,16 +56,12 @@ lsp_installer.on_server_ready(function(server)
         opts.on_attach = function (client, bufnr)
             -- neovim's LSP client does not currently support dynamic capabilities registration, so we need to set
             -- the resolved capabilities of the eslint server ourselves!
-            client.resolved_capabilities.document_formatting = true
+            client.resolved_capabilities.document_formatting = false
             client.resolved_capabilities.document_range_formatting = false
 
             general_keybindings(bufnr)
 
-            set.tabstop = 2
-            set.softtabstop = 2
-            set.shiftwidth = 2
-            set.smartindent = false
-            set.cindent = true
+            map(bufnr, 'n', '<leader>,', '<cmd>EslintFixAll<CR>', options)
         end
 
         opts.settings = {
