@@ -1,7 +1,7 @@
 
 require'lualine'.setup {
     options = {
-        theme = 'nord'
+        theme = 'gruvbox'
     },
     sections = {
         lualine_x = {'encoding'},

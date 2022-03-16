@@ -115,6 +115,16 @@ _G.packer_plugins = {
     path = "/Users/guetteluis/.local/share/nvim/site/pack/packer/start/focus.nvim",
     url = "https://github.com/beauwilliams/focus.nvim"
   },
+  ["friendly-snippets"] = {
+    loaded = true,
+    path = "/Users/guetteluis/.local/share/nvim/site/pack/packer/start/friendly-snippets",
+    url = "https://github.com/rafamadriz/friendly-snippets"
+  },
+  gruvbox = {
+    loaded = true,
+    path = "/Users/guetteluis/.local/share/nvim/site/pack/packer/start/gruvbox",
+    url = "https://github.com/morhetz/gruvbox"
+  },
   harpoon = {
     loaded = true,
     path = "/Users/guetteluis/.local/share/nvim/site/pack/packer/start/harpoon",
@@ -125,11 +135,6 @@ _G.packer_plugins = {
     path = "/Users/guetteluis/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
   },
-  ["nord-vim"] = {
-    loaded = true,
-    path = "/Users/guetteluis/.local/share/nvim/site/pack/packer/start/nord-vim",
-    url = "https://github.com/arcticicestudio/nord-vim"
-  },
   ["null-ls.nvim"] = {
     loaded = true,
     path = "/Users/guetteluis/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
@@ -139,6 +144,14 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/guetteluis/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
+  },
+  ["nvim-code-action-menu"] = {
+    commands = { "CodeActionMenu" },
+    loaded = false,
+    needs_bufread = true,
+    only_cond = false,
+    path = "/Users/guetteluis/.local/share/nvim/site/pack/packer/opt/nvim-code-action-menu",
+    url = "https://github.com/weilbith/nvim-code-action-menu"
   },
   ["nvim-lsp-installer"] = {
     loaded = true,
@@ -217,6 +230,12 @@ time([[Defining packer_plugins]], false)
 time([[Config for focus.nvim]], true)
 try_loadstring("\27LJ\2\n”\1\0\0\4\0\b\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\0025\3\6\0=\3\a\2B\0\2\1K\0\1\0\25compatible_filetrees\1\2\0\0\rnvimtree\23excluded_filetypes\1\0\0\1\3\0\0\fharpoon\rnvimtree\nsetup\nfocus\frequire\0", "config", "focus.nvim")
 time([[Config for focus.nvim]], false)
+
+-- Command lazy-loads
+time([[Defining lazy-load commands]], true)
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file CodeActionMenu lua require("packer.load")({'nvim-code-action-menu'}, { cmd = "CodeActionMenu", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+time([[Defining lazy-load commands]], false)
+
 if should_profile then save_profiles() end
 
 end)

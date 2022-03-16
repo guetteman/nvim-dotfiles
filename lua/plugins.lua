@@ -17,6 +17,7 @@ return require('packer').startup(function ()
     use 'hrsh7th/cmp-buffer'
     use 'hrsh7th/cmp-path'
     use 'L3MON4D3/LuaSnip'
+    use "rafamadriz/friendly-snippets"
     use 'saadparwaiz1/cmp_luasnip'
     use "jose-elias-alvarez/null-ls.nvim"
     use "jose-elias-alvarez/nvim-lsp-ts-utils"
@@ -28,7 +29,9 @@ return require('packer').startup(function ()
         },
     }
 
-    use 'arcticicestudio/nord-vim'
+    use 'morhetz/gruvbox'
+    
+
 
     use {
         'nvim-telescope/telescope.nvim',
@@ -57,6 +60,11 @@ return require('packer').startup(function ()
     use 'glepnir/dashboard-nvim'
 
     use 'christoomey/vim-tmux-navigator'
+
+    use {
+        'weilbith/nvim-code-action-menu',
+        cmd = 'CodeActionMenu',
+    }
 
     use { "beauwilliams/focus.nvim", config = function() require("focus").setup({
         excluded_filetypes = {"harpoon", "nvimtree"},

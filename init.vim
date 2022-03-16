@@ -14,7 +14,7 @@ lua require('config.lsp-config')
 
 lua require('config.nvim-tree')
 
-lua require('config.nord')
+lua require('config.gruvbox')
 
 lua require('config.telescope')
 
@@ -31,6 +31,8 @@ lua require('config.vim-test')
 lua require('config.php-cs-fixer')
 
 lua require('config.dashboard-nvim')
+
+lua require('config.luasnip')
 
 "---------------------------------------------------------
 " Keybindings
